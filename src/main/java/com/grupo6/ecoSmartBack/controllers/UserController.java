@@ -1,7 +1,6 @@
 package com.grupo6.ecoSmartBack.controllers;
 
-import com.grupo6.ecoSmartBack.dtos.LoginParameter;
-import com.grupo6.ecoSmartBack.dtos.UserDto;
+import com.grupo6.ecoSmartBack.dtos.*;
 import com.grupo6.ecoSmartBack.entities.UserDocument;
 import com.grupo6.ecoSmartBack.services.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -53,8 +52,14 @@ public class UserController {
 
     @PostMapping("/login")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<UserDto> login(@RequestBody LoginParameter loginParameter) {
-        return ResponseEntity.ok(userService.findByEmailAndPassword(loginParameter.getEmail(), loginParameter.getPassword()));
+    public ResponseEntity<ClientFull> login(@RequestBody LoginParameter loginParameter) {
+        return ResponseEntity.ok(userService.loginAction(loginParameter.getEmail(), loginParameter.getPassword()));
+    }
+
+    @PostMapping("/signUp")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<ClientFull> signUp(@RequestBody SignUpDto signUpDto) {
+        return ResponseEntity.ok(userService.signUpAction(signUpDto));
     }
 
 }

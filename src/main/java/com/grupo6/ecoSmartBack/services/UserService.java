@@ -1,5 +1,7 @@
 package com.grupo6.ecoSmartBack.services;
 
+import com.grupo6.ecoSmartBack.dtos.ClientFull;
+import com.grupo6.ecoSmartBack.dtos.SignUpDto;
 import com.grupo6.ecoSmartBack.dtos.UserDto;
 import com.grupo6.ecoSmartBack.entities.UserDocument;
 import org.bson.types.ObjectId;
@@ -13,6 +15,8 @@ public interface UserService {
     public List<UserDto> listUser();
     public UserDto updateUser(UserDocument user);
     public String deleteUser(ObjectId idUser);
-    public UserDto findByEmailAndPassword(String email, String password);
+
+    public ClientFull loginAction(String email, String password);
+    public ClientFull signUpAction (SignUpDto signUpDto);
 
 }
